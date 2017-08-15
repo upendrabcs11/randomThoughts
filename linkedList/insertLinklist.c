@@ -15,7 +15,7 @@ void PrintList(struct list *head){
         printf("%d->",head->data);
         head = head->next;
     }
-    printf("NULL");
+    printf("NULL\n");
 }
 void InsertAtEnd(struct list **head,int data){
     struct list *newNode = (struct list*)malloc(sizeof(struct list));
@@ -68,6 +68,44 @@ void InsertAtPosition(struct list **head,int pos,int data){
         }
     }
 }
+bool DeleteElement(struct list **head,int data){
+    if(*head != NULL){
+        struct list *cur = *head,*prev = NULL ;    
+        while(cur != NULL && cur->data != data){
+            prev = cur;
+            cur = cur->next;
+        }
+        if(cur != NULL){
+            if(prev != NULL)
+                prev->next = cur->next;
+            else
+                *head = cur->next;
+            free(cur);
+            return true;
+        }
+    }
+   return false;     
+}
+bool DeleteAtIndex(struct list **head,int index){
+    if(index > 0){
+        struct list *cur = *head, *prev = NULL;
+        int k = 1;
+        while(cur != NULL && k < index){
+            prev = cur;
+            cur = cur->next;
+            k++;
+        }
+        if(cur != NULL){
+            if(prev != NULL)
+                prev->next = cur->next;
+            else
+                *head = cur->next;
+            free(cur);
+            return true;
+        }
+    }
+      return false;  
+}
 int main() {
     int n; 
     scanf("%d", &n);
@@ -81,6 +119,14 @@ int main() {
             InsertAtBeggning(&head,data);
     }
     InsertAtPosition(&head,7,111);
+    PrintList(head);
+    DeleteElement(&head,111);
+    PrintList(head);
+    DeleteElement(&head,112);
+    PrintList(head);
+    DeleteElement(&head,33);
+    PrintList(head);
+    DeleteAtIndex(&head,4);
     PrintList(head);
     return 0;
 }
