@@ -181,10 +181,11 @@ bool SwapNodeLinkedList(struct list **head,int x,int y){
 int  MiddleOfLinkedList(struct list *head){ // middle of linked list if two middle element then avg of them else middle
    if(head==NULL)
        return -1;
-   struct list *fast=head,*slow=head;
-   while(fast!=NULL||fast->next!=NULL){
-       fast=fast->next->next;
-       slow=slow->next;
+   struct list *fast = head, *slow = head;
+   while(fast != NULL && fast->next != NULL){
+        if(fast != slow)
+            slow=slow->next;
+       fast=fast->next->next;       
    }
    if(fast==NULL){
         return (slow->data + slow->next->data)/2;
@@ -220,7 +221,31 @@ void DeleteList(struct list **head){ // delete all node from list
    }
    *head = NULL;
 }
-
+struct list *ReverseListRecursive(struct list *head){
+  if(head == NULL || head->next == NULL)
+     return head;
+   struct list *nextNode = head->next ;
+   struct list *rev = ReverseListRecursive(nextNode);
+   nextNode->next = head;
+   head->next = NULL;
+   return rev;
+   /*
+     struct list *rev = ReverseListRecursive(head->next);
+     head->next->next = head;
+     head->next = NULL;
+     return rev; 
+   */ 
+}
+struct list *ReverseListIterative(struct list *head){
+  struct list *curHead = NULL ,*nextNode;
+  while(head != NULL){
+     nextNode = head->next;
+     head->next = curHead ;
+     curHead = head;
+     head = nextNode; 
+  }
+   return curHead; 
+}
 int main() {
     int n; 
     scanf("%d", &n);
