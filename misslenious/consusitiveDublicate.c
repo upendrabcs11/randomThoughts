@@ -26,3 +26,28 @@ return concate(str[n],newStr);
  // this is just algo so it will not run but if just correct the syntax 
  // and provide proper written function it will work properly
 }
+
+/*
+
+ void  removeDublicate(char *str,int n)
+{
+     int strptr=-1;
+     int i=0;
+     while(i<n)
+     {
+         if(strptr == -1 || str[i] != str[strptr])
+         {
+             strptr++;
+             str[strptr]=str[i];
+             i++;
+         }
+         else
+         {
+             while(i<n && str[i] == str[strptr])
+                  i++;
+             strptr--;
+         }
+     }
+     str[strptr+1]='\0';
+ }
+ */
