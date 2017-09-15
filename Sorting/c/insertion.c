@@ -2,6 +2,20 @@
 #define MAX 8
 void insertionsort(int[] );
 void display(int[]);
+bool MiddleOfLinkedList(struct list *head){
+   
+}
+int NthFromLast(struct list **head,int n){
+   
+}
+void DeleteList(struct list **head){
+   
+}
+UPENDRA • Now
+UPENDRA KUMAR (upendrakumarpatel7@gmail.com)
+
+
+
 int  main()
 {
 	int a[MAX];
